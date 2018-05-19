@@ -29,7 +29,7 @@ app.get('/todos', function(request, response){
       return r.description;
     });
     
-    console.log(tasks);
+    //console.log(tasks);
     var context = {tasks: tasks};
     response.render('list.html',context);
   });
@@ -43,7 +43,7 @@ app.get('/todos/add', function(request, response){
       return r.description;
     });
     
-    console.log(tasks);
+    //console.log(tasks);
     var context = {tasks: tasks};
     response.render('form.html',context);
   });
@@ -55,9 +55,20 @@ app.post('/submit', function(request, response) {
   console.log(typeof(input));
   db.result(q, input)
   .then(function(result) {
-    console.log(result);
+    //console.log(result);
     });
   response.redirect('/todos/add');
+});
+
+app.get('/todos/done/:id', function (request, response) {
+    var id = {id: request.params.id};
+    console.log(id);
+    var query = "UPDATE task SET done = true WHERE id = ${id}";
+    db.result(query, id)
+    .then(function(result) {
+      console.log(result);
+    });
+    response.redirect('/todos/add');
 });
 
 
