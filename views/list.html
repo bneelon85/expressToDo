@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
     <ul>
-        
-        <li></li>
-        
+       {% for i in tasks %} 
+            <li>
+                {{i.description}}
+            </li>
+           {% endfor %}
     </ul>
 {% endblock %}

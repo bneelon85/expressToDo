@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<form action="/todos/add" method="POST">
+<form action="/submit" method="POST">
     What do you need to do? <input type="text" name="task">
     <input type="submit" value="Submit">
 </form>
 
     <ul>
-        
-        <li></li>
-        
+       {% for i in tasks %} 
+            <li>
+                {{i.description}}
+            </li>
+           {% endfor %}
     </ul>
 {% endblock %}
